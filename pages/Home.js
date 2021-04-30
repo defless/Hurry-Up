@@ -23,7 +23,7 @@ const Home = () => {
         const result = await request.json();
         const data = JSON.parse(result.data);
         router.push({
-            pathname: '/Article',
+            pathname: '/Media',
             query: {
                 data: JSON.stringify(
                     {
