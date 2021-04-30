@@ -9,6 +9,7 @@ const Home = () => {
     const router = useRouter();
 
     const [state, dispatch] = useReducer(mockState, {
+        url: '',
         fetching: false,
         error: null,
     });
@@ -16,6 +17,10 @@ const Home = () => {
     const getArticle = async () => {
         if (isValidURL(state.url)) {
         dispatch({fetching: true})
+        const medium = getMedium(state.url);
+        if (medium === 'error') {
+
+        }
         const request = await fetch(`http://localhost:3000/api/scrap`, {
             method: 'POST',
             body: JSON.stringify(state.url)
@@ -27,6 +32,7 @@ const Home = () => {
             query: {
                 data: JSON.stringify(
                     {
+                        medium,
                         headline: data.headline,
                         article: data.articleBody,
                         photo: data.image.url,
@@ -38,6 +44,15 @@ const Home = () => {
         alert('Vous devez fournir une url valide')
         }
         dispatch({ fetching: false })
+    };
+
+    const getMedium = url => {
+      switch (url.substring(12, 16)) {
+        case 'lade':
+          return 'hurry'
+        default:
+          return 'error'
+      }
     };
 
     function isValidURL(string) {
