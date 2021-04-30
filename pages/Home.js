@@ -73,10 +73,20 @@ const Home = () => {
                   <Loader />
                 ) : (
                     <>
-                        <h1 className="font-logo text-8xl my-24 text-purple-400 font-bold">Hurry Up</h1>
+                        <h1 className="font-logo text-6xl my-12 sm:text-8xl sm:my-24 text-purple-400 font-bold">Hurry Up</h1>
                         <div className="py-4 lg:px-56 mb-4 flex justify-center flex-wrap md:flex-nowrap font-raleway">
-                            <input className="w-full p-1 mx-4 mb-5 md:mb-0 shadow-md rounded" type="text" onChange={onChange} placeholder="Url de l'article premium"/>
-                            <input className="mx-4 p-2 w-full md:w-24 rounded shadow-md bg-purple-400 text-white" type="submit" onClick={getArticle} value="Récuperer"/>
+                            <input
+                              className="w-full p-1 mx-4 mb-5 md:mb-0 shadow-md rounded"
+                              type="text"
+                              onChange={onChange}
+                              placeholder="Url de l'article premium"
+                            />
+                            <input
+                              className="mx-4 p-2 w-full md:w-24 rounded shadow-md bg-purple-400 text-white"
+                              type="submit"
+                              onClick={getArticle}
+                              value="Récuperer"
+                            />
                         </div>
                         <div className="text-center mt-20">
                             <h2 className="text-2xl font-raleway font-bold mb-4" >Médias disponibles</h2>
