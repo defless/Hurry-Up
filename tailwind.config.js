@@ -6,6 +6,13 @@ module.exports = {
       ...theme('colors'),
       'depeche': '#ED1C2F',
     }),
+    fontFamily: {
+       'sans': ['ui-sans-serif', 'system-ui'],
+       'serif': ['ui-serif', 'Georgia'],
+       'mono': ['ui-monospace', 'SFMono-Regular'],
+       'raleway': ['Raleway'],
+       'logo': ['Satisfy'],
+      },
     extend: {},
   },
   variants: {

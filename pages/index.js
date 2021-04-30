@@ -1,5 +1,5 @@
-import Input from './Input';
+import Home from './Home';
 
-export default function Home() {
-  return <Input />
+export default function Index() {
+  return <Home />
 }
