@@ -21,10 +21,14 @@ const Home = () => {
         if (medium === 'error') {
 
         }
-        const request = await fetch(`http://localhost:3000/api/scrap`, {
-            method: 'POST',
-            body: JSON.stringify(state.url)
-        });
+        try {
+          const request = await fetch(`http://localhost:3000/api/scrap`, {
+              method: 'POST',
+              body: JSON.stringify(state.url)
+          });
+        } catch (e) {
+          console.error(e);
+        }
         const result = await request.json();
         const data = JSON.parse(result.data);
         router.push({
