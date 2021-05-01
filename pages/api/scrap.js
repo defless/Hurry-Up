@@ -1,6 +1,16 @@
 const puppeteer = require('puppeteer');
+import initMiddleware from '../../helpers/init-middleware';
+import Cors from 'cors'
+
+const cors = initMiddleware(
+  Cors({
+    methods: ['GET', 'POST'],
+  })
+);
 
 export default async (req, res) => {
+
+  await cors(req, res);
 
   const browser = await puppeteer.launch(
     { headless: true,

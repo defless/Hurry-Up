@@ -21,7 +21,7 @@ const Home = () => {
         if (medium === 'error') {
 
         }
-        const request = await fetch(`http://localhost:3000/api/scrap`, {
+        const request = await fetch(`${getApiUrl()}/api/scrap`, {
             method: 'POST',
             body: JSON.stringify(state.url)
         });
@@ -44,6 +44,15 @@ const Home = () => {
         alert('Vous devez fournir une url valide')
         }
         dispatch({ fetching: false })
+    };
+
+    const getApiUrl = () => {
+      if (process.env.NEXT_PUBLIC_ENV === 'prod') {
+        console.log(process.env.NEXT_PUBLIC_API_URL_PROD);
+        return process.env.NEXT_PUBLIC_API_URL_PROD
+      } else {
+        return process.env.NEXT_PUBLIC_API_URL_LOCAL
+      }
     };
 
     const getMedium = url => {
