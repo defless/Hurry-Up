@@ -21,7 +21,7 @@ const Home = () => {
         if (medium === 'error') {
 
         }
-        const request = await fetch(`${getApiUrl()}/api/scrap`, {
+        const request = await fetch(`http://localhost:3000/api/scrap`, {
             method: 'POST',
             body: JSON.stringify(state.url)
         });
