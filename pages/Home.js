@@ -23,27 +23,28 @@ const Home = () => {
         }
         try {
           const request = await fetch(`http://localhost:3000/api/scrap`, {
-              method: 'POST',
-              body: JSON.stringify(state.url)
+            method: 'POST',
+            body: JSON.stringify(state.url)
           });
+          const result = await request.json();
+          const data = JSON.parse(result.data);
+          router.push({
+              pathname: '/Media',
+              query: {
+                  data: JSON.stringify(
+                      {
+                          medium,
+                          headline: data.headline,
+                          article: data.articleBody,
+                          photo: data.image.url,
+                      }
+                  )
+              }
+          })
         } catch (e) {
           console.error(e);
         }
-        const result = await request.json();
-        const data = JSON.parse(result.data);
-        router.push({
-            pathname: '/Media',
-            query: {
-                data: JSON.stringify(
-                    {
-                        medium,
-                        headline: data.headline,
-                        article: data.articleBody,
-                        photo: data.image.url,
-                    }
-                )
-            }
-        })
+
         } else {
         alert('Vous devez fournir une url valide')
         }

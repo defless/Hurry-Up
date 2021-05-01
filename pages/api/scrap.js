@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 import initMiddleware from '../../helpers/init-middleware';
 import Cors from 'cors'
+import chromium from 'chrome-aws-lambda';
 
 const cors = initMiddleware(
   Cors({
@@ -12,7 +13,7 @@ export default async (req, res) => {
 
   await cors(req, res);
 
-  const browser = await puppeteer.launch(
+  const browser = await chromium.puppeteer.launch(
     { headless: true,
       args: [
         '--no-sandbox',
