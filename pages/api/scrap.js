@@ -14,13 +14,12 @@ export default async (req, res) => {
   await cors(req, res);
 
   const browser = await chromium.puppeteer.launch(
-    { headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--single-process'
-      ],
+    {
+      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
+      headless: true,
+      ignoreHTTPSErrors: true,
     }
   )
 
