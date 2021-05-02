@@ -22,7 +22,7 @@ const Home = () => {
 
         }
         try {
-          const request = await fetch(`http://localhost:3000/api/scrap`, {
+          const request = await fetch(`${getApiUrl()}/api/scrap`, {
             method: 'POST',
             body: JSON.stringify(state.url)
           });
