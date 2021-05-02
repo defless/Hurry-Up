@@ -102,14 +102,17 @@ const Home = () => {
                               value="Récuperer"
                             />
                         </div>
-                        <div className="text-center mt-20">
+                        <div className="text-center mt-20 px-12">
                             <h2 className="text-2xl font-raleway font-bold mb-4" >Médias disponibles</h2>
                             <div className="inline-flex">
                                 <img className="opacity-25 h-12" src="/hurry.png"/>
                             </div>
                             <h2 className="text-2xl font-raleway font-bold mt-12 mb-4" >Médias bientôt disponibles</h2>
-                            <div className="inline-flex">
-                                <img className="opacity-25 h-12" src="/terre.png"/>
+                            <div className="inline-flex flex-wrap justify-evenly">
+                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/terre.png"/>
+                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/economique.png"/>
+                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/cablé.png"/>
+                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/parigot.png"/>
                             </div>
                         </div>
                     </>
