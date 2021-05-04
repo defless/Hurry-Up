@@ -23,7 +23,7 @@ export default async (req, res) => {
   )
   const page = await browser.newPage();
   await page.setDefaultNavigationTimeout(0);
-  await page.goto(JSON.parse(req.body));
+  await page.goto(JSON.parse(req.body), { waitUntil: 'domcontentloaded' });
   switch (JSON.parse(req.body).substring(12, 16)) {
     case 'lade':
       data = await page.$eval('head script[type="application/ld+json"]', el => el.text);
