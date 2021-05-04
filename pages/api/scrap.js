@@ -23,13 +23,12 @@ export default async (req, res) => {
   )
   const page = await browser.newPage();
   await page.setDefaultNavigationTimeout(0);
-  await page.goto(JSON.parse(req.body), { waitUntil: 'domcontentloaded' });
+  await page.goto(JSON.parse(req.body));
   switch (JSON.parse(req.body).substring(12, 16)) {
     case 'lade':
       data = await page.$eval('head script[type="application/ld+json"]', el => el.text);
       break;
     case 'econ':
-      console.log(JSON.parse(req.body));
       const query = JSON.parse(await page.$eval('#__NEXT_DATA__', el => el.text));
       let articleBody = '';
       query.props.pageProps.content[0].text.forEach(item => {
