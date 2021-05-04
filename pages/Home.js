@@ -17,10 +17,6 @@ const Home = () => {
     const getArticle = async () => {
         if (isValidURL(state.url)) {
         dispatch({fetching: true})
-        const medium = getMedium(state.url);
-        if (medium === 'error') {
-
-        }
         try {
           const request = await fetch(`${getApiUrl()}/api/scrap`, {
             method: 'POST',
@@ -28,12 +24,13 @@ const Home = () => {
           });
           const result = await request.json();
           const data = JSON.parse(result.data);
+          console.log(data);
           router.push({
               pathname: '/Media',
               query: {
                   data: JSON.stringify(
                       {
-                          medium,
+                          medium: data.medium,
                           headline: data.headline,
                           article: data.articleBody,
                           photo: data.image.url,
@@ -43,6 +40,7 @@ const Home = () => {
           })
         } catch (e) {
           console.error(e);
+          dispatch({ url: '' });
         }
 
         } else {
@@ -57,15 +55,6 @@ const Home = () => {
         return process.env.NEXT_PUBLIC_API_URL_PROD
       } else {
         return process.env.NEXT_PUBLIC_API_URL_LOCAL
-      }
-    };
-
-    const getMedium = url => {
-      switch (url.substring(12, 16)) {
-        case 'lade':
-          return 'hurry'
-        default:
-          return 'error'
       }
     };
 
@@ -105,14 +94,24 @@ const Home = () => {
                         <div className="text-center mt-20 px-12">
                             <h2 className="text-2xl font-raleway font-bold mb-4" >Médias disponibles</h2>
                             <div className="inline-flex">
-                                <img className="opacity-25 h-12" src="/hurry.png"/>
+                                <a href="https://www.ladepeche.fr/">
+                                  <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/hurry.png"/>
+                                </a>
+                                <a href="https://www.economist.com/">
+                                  <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/economique.png"/>
+                                </a>
                             </div>
                             <h2 className="text-2xl font-raleway font-bold mt-12 mb-4" >Médias bientôt disponibles</h2>
                             <div className="inline-flex flex-wrap justify-evenly">
-                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/terre.png"/>
-                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/economique.png"/>
+                              <a href="https://www.annabac.com/">
+                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/bac.png"/>
+                              </a>
+                              <a href="https://www.wired.com/">
                                 <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/cablé.png"/>
+                              </a>
+                              <a href="https://www.leparisien.fr/">
                                 <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/parigot.png"/>
+                              </a>
                             </div>
                         </div>
                     </>
