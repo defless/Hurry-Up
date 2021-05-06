@@ -100,6 +100,9 @@ const Home = () => {
                                 <a href="https://www.economist.com/">
                                   <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/economique.png"/>
                                 </a>
+                                <a href="https://www.leparisien.fr/">
+                                  <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/parigot.png"/>
+                                </a>
                             </div>
                             <h2 className="text-2xl font-raleway font-bold mt-12 mb-4" >Médias bientôt disponibles</h2>
                             <div className="inline-flex flex-wrap justify-evenly">
@@ -108,9 +111,6 @@ const Home = () => {
                               </a>
                               <a href="https://www.wired.com/">
                                 <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/cablé.png"/>
-                              </a>
-                              <a href="https://www.leparisien.fr/">
-                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/parigot.png"/>
                               </a>
                             </div>
                         </div>

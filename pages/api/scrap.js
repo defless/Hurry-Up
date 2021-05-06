@@ -9,6 +9,12 @@ const cors = initMiddleware(
   })
 );
 
+let articleBody;
+let headline;
+let url;
+let body;
+
+
 export default async (req, res) => {
   let data = {};
   await cors(req, res);
@@ -28,9 +34,21 @@ export default async (req, res) => {
     case 'lade':
       data = await page.$eval('head script[type="application/ld+json"]', el => el.text);
       break;
+    case 'lepa':
+      headline = await page.$eval('.title_xl', el => el.innerText);
+      articleBody = await page.$eval('.article-section', el => el.innerText);
+      url = await page.$eval('.image', el => el.src);
+      body = {
+        image: { url },
+        headline,
+        articleBody,
+        medium: 'lepa'
+      };
+      data=JSON.stringify(body);
+      break;
     case 'econ':
-      const query = JSON.parse(await page.$eval('#__NEXT_DATA__', el => el.text));
-      let articleBody = '';
+      let query = JSON.parse(await page.$eval('#__NEXT_DATA__', el => el.text));
+      articleBody = '';
       query.props.pageProps.content[0].text.forEach(item => {
         if (item.name = 'p') {
           item.children.forEach(child => {
@@ -54,7 +72,7 @@ export default async (req, res) => {
         }
         articleBody += ' ';
       });
-      const body = {
+      body = {
         image: { url: query.props.pageProps.content[0].image.main.url.canonical },
         headline: query.props.pageProps.content[0].headline,
         articleBody,
@@ -63,7 +81,7 @@ export default async (req, res) => {
       data=JSON.stringify(body);
       break;
     default:
-      throw new Error('Medium non supporté')
+      throw new Error('Medium non supporté') //not working
 
   }
 
