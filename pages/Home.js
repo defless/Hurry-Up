@@ -23,20 +23,22 @@ const Home = () => {
             body: JSON.stringify(state.url)
           });
           const result = await request.json();
+          if (result?.error) {
+            dispatch({ error: result.error })
+          }
           const data = JSON.parse(result.data);
-          console.log(data);
           router.push({
-              pathname: '/Media',
-              query: {
-                  data: JSON.stringify(
-                      {
-                          medium: data.medium,
-                          headline: data.headline,
-                          article: data.articleBody,
-                          photo: data.image.url,
-                      }
-                  )
-              }
+            pathname: '/Media',
+            query: {
+              data: JSON.stringify(
+                {
+                  medium: data.medium,
+                  headline: data.headline,
+                  article: data.articleBody,
+                  photo: data.image.url,
+                }
+              )
+            }
           })
         } catch (e) {
           console.error(e);
@@ -85,7 +87,7 @@ const Home = () => {
                               placeholder="Url de l'article premium"
                             />
                             <input
-                              className="mx-4 p-2 w-full md:w-24 rounded shadow-md bg-purple-400 text-white"
+                              className="mx-4 p-2 w-full md:w-24 rounded shadow-md bg-purple-400 text-white cursor-pointer"
                               type="submit"
                               onClick={getArticle}
                               value="Récuperer"
@@ -93,7 +95,7 @@ const Home = () => {
                         </div>
                         <div className="text-center mt-20 px-12">
                             <h2 className="text-2xl font-raleway font-bold mb-4" >Médias disponibles</h2>
-                            <div className="inline-flex">
+                            <div className="inline-flex flex-wrap justify-evenly">
                                 <a href="https://www.ladepeche.fr/">
                                   <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/hurry.png"/>
                                 </a>

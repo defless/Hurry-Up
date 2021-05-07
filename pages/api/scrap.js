@@ -81,7 +81,7 @@ export default async (req, res) => {
       data=JSON.stringify(body);
       break;
     default:
-      throw new Error('Medium non supporté') //not working
+      res.status(500).send({error: 'media not supported'});
 
   }
 
