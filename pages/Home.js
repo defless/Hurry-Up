@@ -114,6 +114,9 @@ const Home = () => {
                               <a href="https://www.wired.com/">
                                 <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/cablé.png"/>
                               </a>
+                              <a href="https://www.lesechos.fr/">
+                                <img className="opacity-25 h-12 filter grayscale mx-2 mb-3" src="/resonnance.png"/>
+                              </a>
                             </div>
                         </div>
                     </>
