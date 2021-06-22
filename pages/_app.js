@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import '../theme/styles.css';
 import 'tailwindcss/tailwind.css'
 
@@ -9,8 +10,6 @@ function MyApp({ Component, pageProps }) {
 
     router.events.on('routeChangeComplete', handleRouteChange)
 
-    // If the component is unmounted, unsubscribe
-    // from the event with the `off` method
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
