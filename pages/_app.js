@@ -1,4 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+
+import * as ga from '../lib/ga'
 import '../theme/styles.css';
 import 'tailwindcss/tailwind.css'
 
